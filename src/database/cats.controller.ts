@@ -35,7 +35,7 @@ export class CatsController {
     var name:string
     var urlstr:string
     var jump1:string
-    await this.httpService.get('https://vipmv.co/okplay/143426-8-1.html').toPromise().then(res=>{
+    await this.httpService.get(createCatDto.url).toPromise().then(res=>{
       var namepatt=/<title>(.*?)<\/title>/
       var pattern =/"url_next":"(.*?)"/
       name=namepatt.exec(res.data)[1]
@@ -56,9 +56,14 @@ export class CatsController {
       "url":urlstr
     } 
     return await this.catsService.create(cat);
+  }else{
+    var cat:Cat 
+    cat={
+      "name":createCatDto.url,
+      "url":createCatDto.url
+    } 
+    return await this.catsService.create(cat);
   }
-    console.log("错误的url")
-    return
   }
   @Delete(':sid')
   async delete(@Param() param: any): Promise<any> {
