@@ -6,6 +6,7 @@ import {HttpService,HttpModule}from '@nestjs/axios';
 import {CatsModule} from './database/cat.module'
 import { TypegooseModule } from "nestjs-typegoose";
 
+
 @Module({
   // imports: [MongooseModule.forRoot('mongodb://127.0.0.1:27017/students', {useNewUrlParser: true})],
   imports:[CatsModule,HttpModule,TypegooseModule.forRoot('mongodb://127.0.0.1:27017/see2you')],
